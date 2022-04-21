@@ -1,8 +1,22 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-
+from . models import articlePost
+import markdown
 # Create your views here.
 
-def homepage(request):
-	context='一定可以的，相信自己，别人花一年，我可以花两年时间'
-	return render(request,'flexx/homepage.html',{'context':context})
+def article_list(request):
+	articles=articlePost.objects.all()
+
+	return render(request,'article/list.html',{'articles':articles})
+	
+def article_detail(request,id):
+	article=articlePost.objects.get(id=id)
+	article.body=markdown.markdown(article.body,
+        extensions=[
+        # 包含 缩写、表格等常用扩展
+        'markdown.extensions.extra',
+        # 语法高亮扩展
+        'markdown.extensions.codehilite',
+        ])
+
+	return render(request,'article/detail.html',{'article':article})
