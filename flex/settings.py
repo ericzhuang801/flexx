@@ -38,7 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'myapp'
+    'password_reset',
+    'myapp',
+    'userprofile',
+    'comment',
+    
 ]
 
 MIDDLEWARE = [
@@ -130,3 +134,20 @@ STATICFILES_DIRS =(os.path.join(BASE_DIR, "static"),)
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# SMTP服务器，改为你的邮箱的smtp!
+EMAIL_HOST = 'smtp.163.com'
+# 改为你自己的邮箱名！
+EMAIL_HOST_USER = 'zhuangguiyang1989@163.com'
+# 你的邮箱密码
+EMAIL_HOST_PASSWORD = 'BNUEQRZPKILZGLVA'
+# 发送邮件的端口
+EMAIL_PORT = 25
+# 是否使用 TLS
+EMAIL_USE_TLS = True
+# 默认的发件人
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
